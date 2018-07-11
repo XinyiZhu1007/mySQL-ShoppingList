@@ -1,0 +1,25 @@
+{
+  "name": "mySQL-ShoppingList",
+  "version": "1.0.0",
+  "description": "### ### ### this is a client side app that allows users to: ### ####     1. check store stock; ####    2. enter items and quantity of interest; ####    3. modify stock record when item and quantity are sufficient; ####     4. notify when requested item/quantity does not match stock record. ### ### ### the database used for record storing is mySQL.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "inquirer": "^6.0.0",
+    "mysql": "^2.15.0"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/XinyiZhu1007/mySQL-ShoppingList.git"
+  },
+  "bugs": {
+    "url": "https://github.com/XinyiZhu1007/mySQL-ShoppingList/issues"
+  },
+  "homepage": "https://github.com/XinyiZhu1007/mySQL-ShoppingList#readme"
+}
