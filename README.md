@@ -11,3 +11,6 @@
 ###
 ###
 ### the database used for record storing is mySQL.
+
+
+### this repo is work-in-progress, will update the files later
