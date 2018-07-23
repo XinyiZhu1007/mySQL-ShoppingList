@@ -5,7 +5,7 @@
 ###
 ###
 ### -------------------
-#### For customer usage, enter `node bamazonCustomer.js`.
+#### For `Customer` usage, enter `node bamazonCustomer.js`.
 ##### The customer-side interface will:
 ###
 ######     1. display all available products;
