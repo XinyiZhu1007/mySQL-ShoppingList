@@ -14,7 +14,9 @@
 ######     4. check stock and notify when requested item/quantity does not match stock record.
 ###
 ###
-
+![customer demo pic1](https://github.com/XinyiZhu1007/mySQL-ShoppingList/blob/master/images/customer1.png?raw=true)
+![customer demo pic2](https://github.com/XinyiZhu1007/mySQL-ShoppingList/blob/master/images/customer2.png?raw=true)
+![customer demo pic2](https://github.com/XinyiZhu1007/mySQL-ShoppingList/blob/master/images/customer3.png?raw=true)
 
 
 ### this repo is work-in-progress, will update the files later
