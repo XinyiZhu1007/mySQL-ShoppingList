@@ -10,7 +10,6 @@ var connection = db.login();
 
 
 function CustomerStart() {
-    // connection.connect();
     connection.query(`select * from products`, (err, data) => {
         if(err) {
             throw err;
@@ -27,7 +26,7 @@ function CustomerStart() {
                 name: 'id',
                 message: 'Please enter ID of the product you would like to purchase: ',
                 validate: function(value) {
-                    if(parseInt(value) > 0 && !isNaN(value)) {
+                    if(parseInt(value) > 0 && !isNaN(value) && parseInt(value) <= data.length) {
                         return true;
                     } else {
                         return false;
@@ -46,7 +45,7 @@ function CustomerStart() {
                     };
                 }
             }
-        ]).then( (ans) => {
+        ]).then ( (ans) => {
             var selectedItem = parseInt(ans.id) - 1;
             var selectedQuantity = parseInt(ans.quantity);
             var selectedTotal = parseFloat(data[selectedItem].price * selectedQuantity);
@@ -61,29 +60,28 @@ function CustomerStart() {
                         throw err;
                     };
                     console.log(` \n ~~ You have successfully purchased ${selectedQuantity} ${data[selectedItem].product_name}(s) ~~`);
-                    console.log(` ~~ Your total is $${selectedTotal} dollars ~~ `);
+                    console.log(` ~~ Your total is $${selectedTotal} dollars ~~ \n`);
+
+                    buyMore(); 
                 });
             } else {
-                console.log('Sorry, currently we do not have enough product in stock.');
-            };
+                console.log(`Sorry, currently we do not have enough product in stock. \n`);
 
-               
-        }).then( (x) => {
-            buyMore();
+                buyMore(); 
+            };
         }); 
-    }); 
-}
+    });   
+};
 
 function buyMore() {
     inquirer.prompt([
         {
             type: 'confirm',
-            name: 'confirm',
-            message: 'Would you like to make another purchase?',
-            default: true
+            name: 'buymore',
+            message: 'Would you like to make another purchase?'
         }
     ]).then( (ans) => {
-        if(ans.confirm) {
+        if(ans.buymore) {
             CustomerStart();
         } else {
             console.log("Thank you for shopping with Bamazon!!");

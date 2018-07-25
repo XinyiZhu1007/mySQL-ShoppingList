@@ -1,4 +1,4 @@
- CREATE TABLE products(
+ CREATE TABLE IF NOT EXISTS products(
  	item_id integer primary key auto_increment,
  	product_name varchar(40),
  	department_name varchar(40),

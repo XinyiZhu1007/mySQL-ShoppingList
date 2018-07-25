@@ -6,7 +6,6 @@ function login() {
         user     : 'root',
         password : 'root',
         database : 'bamazon',
-        // socketPath : '/Applications/MAMP/tmp/mysql/mysql.sock'
         port : 3306,
         multipleStatements  : true
     });
