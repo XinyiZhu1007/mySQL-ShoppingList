@@ -18,7 +18,8 @@ function managerStart() {
                 'View Products for Sale',
                 'View Low Inventory',
                 'Add to Inventory',
-                'Add New Product'
+                'Add New Product',
+                'Exit'
             ]
         } 
     ]).then((ans) => {
@@ -34,6 +35,9 @@ function managerStart() {
                 break;
             case 'Add New Product':
                 addNew();
+                break;
+            case 'Exit':
+                connection.end();
                 break;
             default:
                 console.log('Error.');
@@ -99,34 +103,27 @@ function update() {
             }
         },
     ]).then((ans) => {
-        
-
+        var selectID, selectQTY, newQTY;
         connection.query(`select * from products`, (err, data) => {
             if(err) {
                 throw err;
             };
-            // console.log('~~~~~~~ Bamazon Manager Portal: View Product Stocking ~~~~~~~~~~');
-            // for(var i = 0; i< data.length; i++) {
-            //     console.log('ID: ' + data[i].item_id + '    Product Name: ' + data[i].product_name + '    Quantity: ' + data[i].stock_quantity);
-            // };
-            // console.log('~~~~~~~~~~~~~~~~ ****** ~~~~~~~~~~~~~~~~');
-            var selectID = parseInt(ans.updateID) - 1;
-            var selectQTY = parseInt(ans.updateQuantity);
-            var newQTY = parseInt(data[selectID].stock_quantity) + selectQTY;
+            // console.log(data);
+            selectID = parseInt(ans.updateID) - 1;
+            selectQTY = parseInt(ans.updateQuantity);
+            newQTY = parseInt(data[selectID].stock_quantity) + selectQTY;
+            // console.log(selectID + ' ' + selectQTY + ' '+ newQTY);
+
+            connection.query(`update products set stock_quantity = ? where item_id = ?`, 
+            [newQTY, ans.updateID] , (err, data) => {
+                if(err) {
+                    throw err;
+                };
+                console.log('quantity updated.');   
+                managerStart();        
+            });
         });
-        
-        connection.query(`update products set stock_quantity = ? where item_id = ?`, [
-            {stock_quantity: newQTY},
-            {item_id: ans.updateID}
-        ] , (err, data) => {
-            if(err) {
-                throw err;
-            };
-            console.log('quantity updated');           
-        });
-        managerStart();
     });
-    
 }
 
 function addNew() {
